@@ -13,7 +13,7 @@ in length.
 It's used just like you'd use any other `Joi` type.
 
 ```js
-var Joi = require('joi');
+var Joi = require('@hapi/joi');
 Joi.objectId = require('joi-objectid')(Joi);
 
 var schema = {
