@@ -12,5 +12,13 @@
     "joi": "^4.6.2",
     "mocha": "^3.2.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pebble/joi-objectid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pebble/joi-objectid/issues"
+  },
+  "homepage": "https://github.com/pebble/joi-objectid#readme"
 }
