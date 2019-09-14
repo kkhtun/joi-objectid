@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('assert');
-var Joi = require('joi');
+var Joi = require('@hapi/joi');
 var joiObjectId = require('./');
 
 describe('joi-objectid', function() {
@@ -33,10 +33,10 @@ describe('joi-objectid', function() {
     , { val: { length: 24 } , pass: false }
     ]
 
-    var schema = { val: oid() };
+    var schema = oid();
 
     tests.forEach(function(test) {
-      var res = Joi.validate({ val: test.val }, schema);
+      var res = schema.validate(test.val);
       assert(test.pass === ! res.error, res.error);
     });
 
@@ -45,7 +45,8 @@ describe('joi-objectid', function() {
 
   it('includes custom message for invalid value', function(done) {
     var dbId = joiObjectId(Joi, 'database id');
-    var result = Joi.validate('blah', dbId());
+    var schema = dbId();
+    var result = schema.validate('blah');
 
     assert(result.error);
     assert(result.error.message.indexOf('database id') >= 0);

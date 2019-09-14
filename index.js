@@ -4,7 +4,7 @@ var assert = require('assert');
 var defaultMessage = 'valid mongo id';
 
 module.exports = function joiObjectId(Joi, message) {
-  assert(Joi && Joi.isJoi, 'you must pass Joi as an argument');
+  assert(Joi && Joi.object, 'you must pass Joi as an argument');
   if (message == undefined) {
     message = defaultMessage;
   }
