@@ -4,13 +4,13 @@
   "description": "A MongoDB ObjectId validator for Joi",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "mocha -A"
   },
   "author": "Aaron Heckmann <aaron.heckmann+github@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "joi": "^4.6.2",
-    "mocha": "^3.2.0"
+    "@hapi/joi": "^16.0.1",
+    "mocha": "^6.2.0"
   },
   "dependencies": {},
   "repository": {
