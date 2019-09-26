@@ -15,10 +15,10 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pebble/joi-objectid.git"
+    "url": "git+https://github.com/mkg20001/joi-objectid.git"
   },
   "bugs": {
-    "url": "https://github.com/pebble/joi-objectid/issues"
+    "url": "https://github.com/mkg20001/joi-objectid/issues"
   },
-  "homepage": "https://github.com/pebble/joi-objectid#readme"
+  "homepage": "https://github.com/mkg20001/joi-objectid#readme"
 }
