@@ -3,7 +3,7 @@
 
 A MongoDB ObjectId validator for Joi.
 
-[![Build Status](https://travis-ci.org/pebble/joi-objectid.svg?branch=master)](https://travis-ci.org/pebble/joi-objectid)
+[![Build Status](https://travis-ci.org/mkg20001/joi-objectid.svg?branch=master)](https://travis-ci.org/mkg20001/joi-objectid)
 
 ## use
 
@@ -13,14 +13,14 @@ in length.
 It's used just like you'd use any other `Joi` type.
 
 ```js
-var Joi = require('@hapi/joi');
-Joi.objectId = require('joi-objectid')(Joi);
+const Joi = require('@hapi/joi')
+Joi.objectId = require('joi-objectid')(Joi)
 
-var schema = {
-  id: Joi.objectId()
-, name: Joi.string().max(100)
-, date: Joi.date()
-}
+const schema = Joi.object({
+  id: Joi.objectId(),
+  name: Joi.string().max(100),
+  date: Joi.date()
+})
 
 ```
 
@@ -34,12 +34,8 @@ npm install joi-objectid --save
 
 #### running tests
 
-- `make test`
-
-## Sponsored by
-
-[Pebble Technology!](https://getpebble.com)
+- `npm test`
 
 ## License
 
-[MIT](https://github.com/pebble/joi-objectid/blob/master/LICENSE)
+[MIT](https://github.com/mkg20001/joi-objectid/blob/master/LICENSE)
