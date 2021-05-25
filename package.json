@@ -6,19 +6,22 @@
   "scripts": {
     "test": "mocha -A"
   },
-  "author": "Kamal Khatwani <kamalkhatwani69@gmail.com>",
+  "author": "Aaron Heckmann <aaron.heckmann+github@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@hapi/joi": "^16.0.1",
     "mocha": "^6.2.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "joi": "^17.4.0",
+    "mongoose": "^5.12.11"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kamal0808/joi-objectid.git"
+    "url": "git+https://github.com/mkg20001/joi-objectid.git"
   },
   "bugs": {
-    "url": "https://github.com/kamal0808/joi-objectid/issues"
+    "url": "https://github.com/mkg20001/joi-objectid/issues"
   },
-  "homepage": "https://github.com/kamal0808/joi-objectid#readme"
+  "homepage": "https://github.com/mkg20001/joi-objectid#readme"
 }
