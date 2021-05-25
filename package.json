@@ -12,10 +12,6 @@
     "@hapi/joi": "^16.0.1",
     "mocha": "^6.2.0"
   },
-  "dependencies": {
-    "joi": "^17.4.0",
-    "mongoose": "^5.12.11"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mkg20001/joi-objectid.git"
