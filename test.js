@@ -1,12 +1,12 @@
 'use strict';
 
 var assert = require('assert');
-var Joi = require('@hapi/joi');
+var Joi = require('joi');
 var joiObjectId = require('./');
 
 describe('joi-objectid', function() {
   it('exports a function', function(done) {
-    assert.equal('function', typeof joiObjectId);
+    assert.strictEqual('function', typeof joiObjectId);
     done();
   });
 
@@ -17,7 +17,7 @@ describe('joi-objectid', function() {
 
   it('returns a validator function', function(done) {
     var fn = joiObjectId(Joi);
-    assert.equal('function', typeof fn);
+    assert.strictEqual('function', typeof fn);
     done();
   });
 
@@ -40,6 +40,46 @@ describe('joi-objectid', function() {
       assert(test.pass === ! res.error, res.error);
     });
 
+    done();
+  });
+
+  it('expects to receive a default message passing invalid value', function(done) {
+    var dbId = joiObjectId(Joi);
+    var schema = dbId();
+    var result = schema.validate('blah');
+
+    assert(result.error);
+    assert(result.error.message.indexOf('valid mongo id') >= 0);
+    done();
+  });
+
+  it('expects to receive a default message passing array in message parameter', function(done) {
+    var dbId = joiObjectId(Joi, []);
+    var schema = dbId();
+    var result = schema.validate('blah');
+
+    assert(result.error);
+    assert(result.error.message.indexOf('valid mongo id') >= 0);
+    done();
+  });
+
+  it('expects to receive a default message passing object in message parameter', function(done) {
+    var dbId = joiObjectId(Joi, {});
+    var schema = dbId();
+    var result = schema.validate('blah');
+
+    assert(result.error);
+    assert(result.error.message.indexOf('valid mongo id') >= 0);
+    done();
+  });
+
+  it('expects to receive a default message passing number in message parameter', function(done) {
+    var dbId = joiObjectId(Joi, 123456);
+    var schema = dbId();
+    var result = schema.validate('blah');
+
+    assert(result.error);
+    assert(result.error.message.indexOf('valid mongo id') >= 0);
     done();
   });
 
