@@ -7,13 +7,26 @@ module.exports = function joiObjectId(Joi, message) {
   if (!message || !(typeof message === 'string')) {
     message = 'valid mongo id';
   }
+
+  var getErrorMessage = (value) => `Provided value "${String(value)}" 
+    fails to match the ${message} pattern`;
+
+  var objectIdHexSchema = Joi.string().custom((value, helper) => {
+    return new RegExp(/^[0-9a-fA-F]{24}$/).test(value) ?
+      value : 
+      helper.message(getErrorMessage(value));
+  });
+
   return function objectId() {
     return Joi.alternatives(
-        Joi.string().regex(/^[0-9a-fA-F]{24}$/, message),
-        Joi.object().keys({
-          id: Joi.any(),
-          _bsontype: Joi.allow('ObjectId')
-        })
+      objectIdHexSchema,
+      Joi.object().custom((value, helper) => {
+        if (value._bsontype !== "ObjectId")
+          return helper.message(getErrorMessage(value));
+        return objectIdHexSchema.validate(value.toString()).error ? 
+          helper.message(getErrorMessage(value)) : 
+          value;
+      })
     );
   };
 }

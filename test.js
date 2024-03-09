@@ -2,6 +2,7 @@
 
 var assert = require('assert');
 var Joi = require('joi');
+var { ObjectId, Int32 } = require("bson");
 var joiObjectId = require('./');
 
 describe('joi-objectid', function() {
@@ -31,6 +32,26 @@ describe('joi-objectid', function() {
     , { val: 'abcd56789012345678901234', pass: true }
     , { val: 123456789012345678901234, pass: false }
     , { val: { length: 24 } , pass: false }
+    ]
+
+    var schema = oid();
+
+    tests.forEach(function(test) {
+      var res = schema.validate(test.val);
+      assert(test.pass === ! res.error, res.error);
+    });
+
+    done();
+  });
+
+  it('allows an object representation of objectId', function(done) {
+    var oid = joiObjectId(Joi);
+
+    var tests = [
+      { val: {}, pass: false }
+    , { val: { x: 1, y: 2 }, pass: false }
+    , { val: new ObjectId(), pass: true } // _bsontype : "ObjectId"
+    , { val: new Int32(123), pass: false } // _bsontype : "Int32"
     ]
 
     var schema = oid();
