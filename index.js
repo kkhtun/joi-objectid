@@ -21,8 +21,13 @@ module.exports = function joiObjectId(Joi, message) {
     return Joi.alternatives(
       objectIdHexSchema,
       Joi.object().custom((value, helper) => {
-        if (value._bsontype !== "ObjectId")
+        // "id" is a 12-byte buffer provided by bson lib, used in both mongodb driver and mongoose
+        if (!value.id || 
+          !(value.id instanceof Buffer) || 
+          value.id.length !== 12 || 
+          value._bsontype !== "ObjectId")
           return helper.message(getErrorMessage(value));
+
         return objectIdHexSchema.validate(value.toString()).error ? 
           helper.message(getErrorMessage(value)) : 
           value;

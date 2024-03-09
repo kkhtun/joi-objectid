@@ -52,6 +52,9 @@ describe('joi-objectid', function() {
     , { val: { x: 1, y: 2 }, pass: false }
     , { val: new ObjectId(), pass: true } // _bsontype : "ObjectId"
     , { val: new Int32(123), pass: false } // _bsontype : "Int32"
+    , { val: { id: Buffer(12), _bsontype: "ObjectId", toString: () => "65ec9de068002f8c5e9d49c6" }, pass: true }
+    , { val: { id: "123456789012", _bsontype: "ObjectId", toString: () => "65ec9de068002f8c5e9d49c6" }, pass: false }
+    , { val: { id: Buffer(24), _bsontype: "ObjectId", toString: () => "65ec9de068002f8c5e9d49c6" }, pass: false }
     ]
 
     var schema = oid();
